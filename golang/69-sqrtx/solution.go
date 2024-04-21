@@ -1,31 +1,27 @@
 package main
 
 func MySqrt(x int) int {
-	if x <= 0 {
-		return 0
+	if x < 2 {
+		return x
 	}
 
-	// Tolerance for the accuracy of the result
-	const tolerance = 1e-10
-	z := float64(x)
-	var prev float64
+	left, right := 1, x/2
 
-	for {
-		// Update the guess according to Newton's method
-		prev = z
-		z -= (z*z - float64(x)) / (2 * z)
+	for left <= right {
 
-		diff := z - prev
+		mid := (left + right) / 2
 
-		// Check if the change is within the desired tolerance
-		if diff < 0 {
-			diff = -diff
+		s := mid * mid
+		if s == x {
+			return mid
 		}
 
-		if diff < tolerance {
-			break
+		if s > x {
+			right = mid - 1
+		} else {
+			left = mid + 1
 		}
 	}
 
-	return int(z)
+	return right
 }

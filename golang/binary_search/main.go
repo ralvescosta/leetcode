@@ -21,6 +21,7 @@ func binary_serach(vec []int, value int) int {
 			return -1
 		}
 	}
+	//
 
 	return -1
 
